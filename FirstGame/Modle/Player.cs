@@ -31,7 +31,7 @@ namespace FirstGame
 			Active = true;
 
 			// Set the player health
-			Health = 100;
+			Health = 10;
 		}
 
 		// Update the player animation

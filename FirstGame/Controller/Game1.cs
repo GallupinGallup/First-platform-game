@@ -56,6 +56,11 @@ namespace FirstGame
 		// The music played during gameplay
 		Song gameplayMusic;
 
+		//Number that holds the player score
+		int score;
+		// The font used to display UI elements
+		SpriteFont font;
+
 		// A random number generator
 		Random random;
 
@@ -110,6 +115,9 @@ namespace FirstGame
 			// Initialize our random number generator
 			random = new Random();
 
+			//Set player's score to zero
+			score = 0;
+
 			base.Initialize();
 		}
 
@@ -122,6 +130,8 @@ namespace FirstGame
 			// Create a new SpriteBatch, which can be used to draw textures.
 			spriteBatch = new SpriteBatch(GraphicsDevice);
 
+			// Load the score font
+			font = Content.Load<SpriteFont>("ShooterContent/Font/gameFont");
 
 			Animation playerAnimation = new Animation();
 			Texture2D playerTexture = Content.Load<Texture2D>("ShooterContent/Animation/shipAnimation");
@@ -142,7 +152,7 @@ namespace FirstGame
 			explosionTexture = Content.Load<Texture2D>("ShooterContent/Animation/explosion");
 
 			// Load the music
-    			//gameplayMusic = Content.Load<Song>("ShooterContent/Sound/gameMusic");
+			//gameplayMusic = Content.Load<Song>("ShooterContent/Sound/gameMusic");
 
 			//// Load the laser and explosion sound effect
 			//laserSound = Content.Load<SoundEffect>("ShooterContent/Sound/laserFire");
@@ -232,14 +242,22 @@ namespace FirstGame
 			{
 				explosions[i].Draw(spriteBatch);
 			}
+			// Draw the score
+			spriteBatch.DrawString(font, "score: " + score, new Vector2(GraphicsDevice.Viewport.TitleSafeArea.X, GraphicsDevice.Viewport.TitleSafeArea.Y), Color.White);
+			// Draw the player health
+			spriteBatch.DrawString(font, "health: " + player.Health, new Vector2(GraphicsDevice.Viewport.TitleSafeArea.X, GraphicsDevice.Viewport.TitleSafeArea.Y + 30), Color.White);
 
 			// Draw the Player
 			player.Draw(spriteBatch);
+
+			//spriteBatch.DrawString(player.Health);
 
 			// Stop drawing
 			spriteBatch.End();
 
 			base.Draw(gameTime);
+
+
 		}
 
 		private void UpdatePlayer(GameTime gameTime)
@@ -279,13 +297,21 @@ namespace FirstGame
 			// Fire only every interval we set as the fireTime
 			if (gameTime.TotalGameTime - previousFireTime > fireTime)
 			{
-				// Reset our current time
-				previousFireTime = gameTime.TotalGameTime;
+				if (currentKeyboardState.IsKeyDown(Keys.Space))
+				{
+					// Reset our current time
+					previousFireTime = gameTime.TotalGameTime;
 
-				// Add the projectile, but add it to the front and center of the player
-				AddProjectile(player.Position + new Vector2(player.Width / 2, 0));
+					// Add the projectile, but add it to the front and center of the player
+					AddProjectile(player.Position + new Vector2(player.Width / 2, 0));
+				}
 			}
 		}
+
+			//if(player.Health <= 0)
+			//{
+			//	base.Exit();
+			//}
 
 		private void PlayMusic(Song song)
 		{
@@ -299,8 +325,9 @@ namespace FirstGame
 				// Loop the currently playing song
 				MediaPlayer.IsRepeating = true;
 			}
-			catch {
-				
+			catch
+			{
+
 			}
 		}
 
@@ -348,6 +375,9 @@ namespace FirstGame
 					{
 						// Add an explosion
 						AddExplosion(enemies[i].Position);
+
+						//Add to the player's score
+						score += enemies[i].Value;
 					}
 					enemies.RemoveAt(i);
 				}
@@ -394,15 +424,11 @@ namespace FirstGame
 				{
 					// Subtract the health from the player based on
 					// the enemy damage
-					player.Health -= enemies[i].Damage;
+					player.Health -= 1;
 
 					// Since the enemy collided with the player
 					// destroy it
 					enemies[i].Health = 0;
-
-					// If the player health is less than zero we died
-					if (player.Health <= 0)
-						player.Active = false;
 				}
 			}
 			// Projectile vs Enemy Collision
