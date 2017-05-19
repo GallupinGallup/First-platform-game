@@ -4,7 +4,7 @@ using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Shooter
+namespace FirstGame.Modle
 {
 	public class Projectile
 	{

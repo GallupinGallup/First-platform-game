@@ -6,8 +6,8 @@ using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Media;
-using FirstGame;
-using Shooter;
+using FirstGame.View;
+using FirstGame.Modle;
 
 namespace FirstGame
 {
@@ -67,9 +67,14 @@ namespace FirstGame
 		Texture2D projectileTexture;
 		List<Projectile> projectiles;
 
+		Texture2D lightningTexture;
+		List<Lightning> lightning;
+
 		// The rate of fire of the player laser
 		TimeSpan fireTime;
 		TimeSpan previousFireTime;
+		TimeSpan lightningTime;
+		TimeSpan previousLightningTime;
 
 		private GraphicsDeviceManager graphics;
 		private SpriteBatch spriteBatch;
@@ -98,10 +103,14 @@ namespace FirstGame
 
 			projectiles = new List<Projectile>();
 
+			lightning = new List<Lightning>();
+
 			explosions = new List<Animation>();
 
 			// Set the laser to fire every quarter second
 			fireTime = TimeSpan.FromSeconds(.15f);
+			previousLightningTime = TimeSpan.Zero;
+			lightningTime = TimeSpan.FromSeconds(.5f);
 
 			// Initialize the enemies list
 			enemies = new List<Enemy>();
@@ -148,7 +157,7 @@ namespace FirstGame
 			enemyTexture = Content.Load<Texture2D>("ShooterContent/Animation/mineAnimation");
 
 			projectileTexture = Content.Load<Texture2D>("ShooterContent/Texture/laser");
-
+			lightningTexture = Content.Load<Texture2D>("ShooterContent/Animation/lightningBig");
 			explosionTexture = Content.Load<Texture2D>("ShooterContent/Animation/explosion");
 
 			// Load the music
@@ -242,6 +251,13 @@ namespace FirstGame
 			{
 				explosions[i].Draw(spriteBatch);
 			}
+
+			for (int i = 0; i<lightning.Count; i++)
+			{
+				
+				lightning[i].Draw(spriteBatch);
+				lightning[i].Update();
+			}
 			// Draw the score
 			spriteBatch.DrawString(font, "score: " + score, new Vector2(GraphicsDevice.Viewport.TitleSafeArea.X, GraphicsDevice.Viewport.TitleSafeArea.Y), Color.White);
 			// Draw the player health
@@ -294,6 +310,12 @@ namespace FirstGame
 			player.Position.X = MathHelper.Clamp(player.Position.X, 0, GraphicsDevice.Viewport.Width - player.Width);
 			player.Position.Y = MathHelper.Clamp(player.Position.Y, 0, GraphicsDevice.Viewport.Height - player.Height);
 
+			if (gameTime.TotalGameTime - previousLightningTime > lightningTime && currentKeyboardState.IsKeyDown(Keys.L))
+			{
+				previousLightningTime = gameTime.TotalGameTime;
+                AddLightning();
+			}
+
 			// Fire only every interval we set as the fireTime
 			if (gameTime.TotalGameTime - previousFireTime > fireTime)
 			{
@@ -305,13 +327,14 @@ namespace FirstGame
 					// Add the projectile, but add it to the front and center of the player
 					AddProjectile(player.Position + new Vector2(player.Width / 2, 0));
 				}
+
 			}
 		}
 
-			//if(player.Health <= 0)
-			//{
-			//	base.Exit();
-			//}
+		//if(player.Health <= 0)
+		//{
+		//	base.Exit();
+		//}
 
 		private void PlayMusic(Song song)
 		{
@@ -429,6 +452,12 @@ namespace FirstGame
 					// Since the enemy collided with the player
 					// destroy it
 					enemies[i].Health = 0;
+
+					//End game if players life is 0
+					if (player.Health == 0)
+					{
+						base.Exit();
+					}
 				}
 			}
 			// Projectile vs Enemy Collision
@@ -472,6 +501,26 @@ namespace FirstGame
 				{
 					projectiles.RemoveAt(i);
 				}
+
+			}
+		}
+
+		private void AddLightning()
+		{
+			Lightning projectile = new Lightning();
+			Animation animation = new Animation();
+
+			animation.Initialize(lightningTexture, Vector2.Zero, 480, 480, 5, 20, Color.White, 1f, true);
+			projectile.Initialize(animation, new Vector2(0, 0));
+			lightning.Add(projectile);
+		}
+
+		private void UpdateLightning()
+		{
+			// Update the Projectiles
+			for (int i = 5; i >= 0; i--)
+			{
+				projectiles[i].Update();
 
 			}
 		}

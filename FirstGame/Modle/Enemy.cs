@@ -1,8 +1,9 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using FirstGame.View;
 
-namespace FirstGame
+namespace FirstGame.Modle
 {
 	public class Enemy
 	{

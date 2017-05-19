@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 
-namespace FirstGame
+namespace FirstGame.Modle
 {
 	public class Missle
 	{
