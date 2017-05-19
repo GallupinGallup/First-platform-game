@@ -52,9 +52,9 @@ namespace Shooter
 
 			Active = true;
 
-			Damage = 2;
+			Damage = 10;
 
-			projectileMoveSpeed = 20f;
+			projectileMoveSpeed = 35f;
 		}
 		public void Update()
 		{

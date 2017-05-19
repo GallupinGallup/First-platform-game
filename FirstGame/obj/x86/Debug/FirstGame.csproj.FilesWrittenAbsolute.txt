@@ -48,3 +48,4 @@
 /Users/tgal3078/Documents/C#/FirstGame/FirstGame/bin/Debug/Content/ShooterContent/Texture/player.xnb
 /Users/tgal3078/Documents/C#/FirstGame/FirstGame/bin/Debug/FirstGame.pdb
 /Users/tgal3078/Documents/C#/FirstGame/FirstGame/obj/x86/Debug/FirstGame.pdb
+/Users/tgal3078/Documents/C#/FirstGame/FirstGame/bin/Debug/Content/ShooterContent/Animation/Lightning.xnb

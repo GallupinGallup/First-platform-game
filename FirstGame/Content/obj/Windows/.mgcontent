@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SourceFileCollection xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Profile>Reach</Profile>
+  <Platform>Windows</Platform>
+  <Config />
+  <SourceFiles>
+    <File>/Users/tgal3078/Documents/C#/FirstGame/FirstGame/Content/ShooterContent/Animation/explosion.png</File>
+    <File>/Users/tgal3078/Documents/C#/FirstGame/FirstGame/Content/ShooterContent/Animation/mineAnimation.png</File>
+    <File>/Users/tgal3078/Documents/C#/FirstGame/FirstGame/Content/ShooterContent/Animation/shipAnimation.png</File>
+    <File>/Users/tgal3078/Documents/C#/FirstGame/FirstGame/Content/ShooterContent/Font/gameFont.spritefont</File>
+    <File>/Users/tgal3078/Documents/C#/FirstGame/FirstGame/Content/ShooterContent/Sound/explosion.wav</File>
+    <File>/Users/tgal3078/Documents/C#/FirstGame/FirstGame/Content/ShooterContent/Sound/gameMusic.mp3</File>
+    <File>/Users/tgal3078/Documents/C#/FirstGame/FirstGame/Content/ShooterContent/Sound/laserFire.wav</File>
+    <File>/Users/tgal3078/Documents/C#/FirstGame/FirstGame/Content/ShooterContent/Sound/menuMusic.mp3</File>
+    <File>/Users/tgal3078/Documents/C#/FirstGame/FirstGame/Content/ShooterContent/Texture/bgLayer1.png</File>
+    <File>/Users/tgal3078/Documents/C#/FirstGame/FirstGame/Content/ShooterContent/Texture/bgLayer2.png</File>
+    <File>/Users/tgal3078/Documents/C#/FirstGame/FirstGame/Content/ShooterContent/Texture/endMenu.png</File>
+    <File>/Users/tgal3078/Documents/C#/FirstGame/FirstGame/Content/ShooterContent/Texture/laser.png</File>
+    <File>/Users/tgal3078/Documents/C#/FirstGame/FirstGame/Content/ShooterContent/Texture/mainMenu.png</File>
+    <File>/Users/tgal3078/Documents/C#/FirstGame/FirstGame/Content/ShooterContent/Texture/mainbackground.png</File>
+    <File>/Users/tgal3078/Documents/C#/FirstGame/FirstGame/Content/ShooterContent/Texture/mine.png</File>
+    <File>/Users/tgal3078/Documents/C#/FirstGame/FirstGame/Content/ShooterContent/Texture/player.png</File>
+    <File>/Users/tgal3078/Documents/C#/FirstGame/FirstGame/Content/ShooterContent/Animation/Lightning.png</File>
+  </SourceFiles>
+</SourceFileCollection>
