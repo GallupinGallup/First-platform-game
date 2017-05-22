@@ -20,7 +20,7 @@
     <File>/Users/tgal3078/Documents/C#/FirstGame/FirstGame/Content/ShooterContent/Texture/mainbackground.png</File>
     <File>/Users/tgal3078/Documents/C#/FirstGame/FirstGame/Content/ShooterContent/Texture/mine.png</File>
     <File>/Users/tgal3078/Documents/C#/FirstGame/FirstGame/Content/ShooterContent/Texture/player.png</File>
-    <File>/Users/tgal3078/Documents/C#/FirstGame/FirstGame/Content/ShooterContent/Animation/Lightning.png</File>
-    <File>/Users/tgal3078/Documents/C#/FirstGame/FirstGame/Content/ShooterContent/Animation/lightningBig.png</File>
+    <File>/Users/tgal3078/Documents/C#/FirstGame/FirstGame/Content/ShooterContent/Texture/Missle.png</File>
+    <File>/Users/tgal3078/Documents/C#/FirstGame/FirstGame/Content/ShooterContent/Animation/lightningBig2.png</File>
   </SourceFiles>
 </SourceFileCollection>

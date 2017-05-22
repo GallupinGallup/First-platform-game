@@ -50,3 +50,6 @@
 /Users/tgal3078/Documents/C#/FirstGame/FirstGame/obj/x86/Debug/FirstGame.pdb
 /Users/tgal3078/Documents/C#/FirstGame/FirstGame/bin/Debug/Content/ShooterContent/Animation/Lightning.xnb
 /Users/tgal3078/Documents/C#/FirstGame/FirstGame/bin/Debug/Content/ShooterContent/Animation/lightningBig.xnb
+/Users/tgal3078/Documents/C#/FirstGame/FirstGame/bin/Debug/Content/ShooterContent/Texture/Missle.xnb
+/Users/tgal3078/Documents/C#/FirstGame/FirstGame/bin/Debug/Content/ShooterContent/Animation/lightningBig 2.xnb
+/Users/tgal3078/Documents/C#/FirstGame/FirstGame/bin/Debug/Content/ShooterContent/Animation/lightningBig2.xnb

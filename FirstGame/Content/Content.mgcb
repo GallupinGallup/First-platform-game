@@ -175,7 +175,7 @@
 /processorParam:TextureFormat=Color
 /build:ShooterContent/Texture/player.png
 
-#begin ShooterContent/Animation/Lightning.png
+#begin ShooterContent/Texture/Missle.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -185,9 +185,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:ShooterContent/Animation/Lightning.png
+/build:ShooterContent/Texture/Missle.png
 
-#begin ShooterContent/Animation/lightningBig.png
+#begin ShooterContent/Animation/lightningBig2.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -197,5 +197,5 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:ShooterContent/Animation/lightningBig.png
+/build:ShooterContent/Animation/lightningBig2.png
 

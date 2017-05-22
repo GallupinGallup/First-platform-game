@@ -67,6 +67,9 @@ namespace FirstGame
 		Texture2D projectileTexture;
 		List<Projectile> projectiles;
 
+		Texture2D missleTexture;
+		List<Missile> missle;
+
 		Texture2D lightningTexture;
 		List<Lightning> lightning;
 
@@ -118,6 +121,8 @@ namespace FirstGame
 			// Set the time keepers to zero
 			previousSpawnTime = TimeSpan.Zero;
 
+			missle = new List<Missile>();
+
 			// Used to determine how fast enemy respawns
 			enemySpawnTime = TimeSpan.FromSeconds(1.0f);
 
@@ -157,8 +162,9 @@ namespace FirstGame
 			enemyTexture = Content.Load<Texture2D>("ShooterContent/Animation/mineAnimation");
 
 			projectileTexture = Content.Load<Texture2D>("ShooterContent/Texture/laser");
-			lightningTexture = Content.Load<Texture2D>("ShooterContent/Animation/lightningBig");
+			lightningTexture = Content.Load<Texture2D>("ShooterContent/Animation/lightningBig2");
 			explosionTexture = Content.Load<Texture2D>("ShooterContent/Animation/explosion");
+			missleTexture = Content.Load<Texture2D>("ShooterContent/Texture/Missle");
 
 			// Load the music
 			//gameplayMusic = Content.Load<Song>("ShooterContent/Sound/gameMusic");
@@ -252,11 +258,18 @@ namespace FirstGame
 				explosions[i].Draw(spriteBatch);
 			}
 
-			for (int i = 0; i<lightning.Count; i++)
+			for (int i = 0; i < lightning.Count; i++)
 			{
-				
+
 				lightning[i].Draw(spriteBatch);
-				lightning[i].Update();
+				lightning[i].Update(); 
+			}
+
+			for (int i = 0; i < missle.Count; i++)
+			{
+
+				missle[i].Draw(spriteBatch);
+				missle[i].Update();
 			}
 			// Draw the score
 			spriteBatch.DrawString(font, "score: " + score, new Vector2(GraphicsDevice.Viewport.TitleSafeArea.X, GraphicsDevice.Viewport.TitleSafeArea.Y), Color.White);
@@ -313,7 +326,7 @@ namespace FirstGame
 			if (gameTime.TotalGameTime - previousLightningTime > lightningTime && currentKeyboardState.IsKeyDown(Keys.L))
 			{
 				previousLightningTime = gameTime.TotalGameTime;
-                AddLightning();
+				AddLightning();
 			}
 
 			// Fire only every interval we set as the fireTime
@@ -327,7 +340,14 @@ namespace FirstGame
 					// Add the projectile, but add it to the front and center of the player
 					AddProjectile(player.Position + new Vector2(player.Width / 2, 0));
 				}
+				if (currentKeyboardState.IsKeyDown(Keys.M))
+				{
+					// Reset our current time
+					previousFireTime = gameTime.TotalGameTime;
 
+					// Add the projectile, but add it to the front and center of the player
+					AddMissle(player.Position + new Vector2(player.Width / 2, 0));
+				}
 			}
 		}
 
@@ -482,6 +502,50 @@ namespace FirstGame
 					}
 				}
 			}
+
+			// Projectile vs Missile Collision
+			for (int i = 0; i<missle.Count; i++)
+			{
+				for (int j = 0; j<enemies.Count; j++)
+				{
+					// Create the rectangles we need to determine if we collided with each other
+					rectangle1 = new Rectangle((int)missle[i].Position.X -
+					missle[i].Width / 2, (int)missle[i].Position.Y -
+					missle[i].Height / 2, missle[i].Width, missle[i].Height);
+
+					rectangle2 = new Rectangle((int)enemies[j].Position.X - enemies[j].Width / 2,
+					(int)enemies[j].Position.Y - enemies[j].Height / 2,
+					enemies[j].Width, enemies[j].Height);
+
+					// Determine if the two objects collided with each other
+					if (rectangle1.Intersects(rectangle2))
+					{
+						enemies[j].Health -= missle[i].Damage;
+						missle[i].Active = false;
+					}
+				}
+			}
+			// Projectile vs Mistical Wepon Collision
+			for (int i = 0; i<lightning.Count; i++)
+			{
+				for (int j = 0; j<enemies.Count; j++)
+				{
+					// Create the rectangles we need to determine if we collided with each other
+					rectangle1 = new Rectangle((int)lightning[i].Position.X -
+					lightning[i].Width / 2, (int)lightning[i].Position.Y -
+					lightning[i].Height / 2, lightning[i].Width, lightning[i].Height);
+
+					rectangle2 = new Rectangle((int)enemies[j].Position.X - enemies[j].Width / 2,
+					(int)enemies[j].Position.Y - enemies[j].Height / 2,
+					enemies[j].Width, enemies[j].Height);
+
+					// Determine if the two objects collided with each other
+					if (rectangle1.Intersects(rectangle2))
+					{
+						enemies[j].Health = 0;
+					}
+				}
+			}
 		}
 		private void AddProjectile(Vector2 position)
 		{
@@ -504,25 +568,22 @@ namespace FirstGame
 
 			}
 		}
+		private void AddMissle(Vector2 position)
+		{
+			Missile missile = new Missile();
+			missile.Initialize(GraphicsDevice.Viewport, missleTexture, position);
+			missle.Add(missile);
+		}
+
 
 		private void AddLightning()
 		{
 			Lightning projectile = new Lightning();
 			Animation animation = new Animation();
 
-			animation.Initialize(lightningTexture, Vector2.Zero, 480, 480, 5, 20, Color.White, 1f, true);
-			projectile.Initialize(animation, new Vector2(0, 0));
+			animation.Initialize(lightningTexture, Vector2.Zero, 120, 120, 1, 45, Color.White, 1f, false);
+			projectile.Initialize(animation, new Vector2(200, 200));
 			lightning.Add(projectile);
-		}
-
-		private void UpdateLightning()
-		{
-			// Update the Projectiles
-			for (int i = 5; i >= 0; i--)
-			{
-				projectiles[i].Update();
-
-			}
 		}
 
 		private void AddExplosion(Vector2 position)
@@ -532,4 +593,5 @@ namespace FirstGame
 			explosions.Add(explosion);
 		}
 	}
+
 }

@@ -58,12 +58,11 @@ namespace FirstGame.Modle
 		}
 		public void Update()
 		{
-			// Projectiles always move to the right
-			Position.X += 1;
-			Position.Y += 1;
-			// Deactivate the bullet if it goes out of screen
-			if (Position.X + Width / 2 > viewport.Width*7)
-				Active = false;
+			//// Projectiles always move to the right
+			//Position.X += 1;
+			//// Deactivate the bullet if it goes out of screen
+			//if (Position.X + Width / 2 > viewport.Width*7)
+			//	Active = false;
 		}
 		public void Draw(SpriteBatch spriteBatch)
 		{
