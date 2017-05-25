@@ -1,6 +1,6 @@
 ﻿<Properties StartupConfiguration="{51CE7DD4-A699-48CD-8593-AB7924F08A50}|Default">
   <MonoDevelop.Ide.ItemProperties.FirstGame PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="FirstGame/Controller/Game1.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="FirstGame/Controller/Program.cs">
     <Files>
       <File FileName="FirstGame/View/ParallaxingBackground.cs" Line="10" Column="15" />
       <File FileName="FirstGame/Controller/Program.cs" Line="4" Column="3" />
